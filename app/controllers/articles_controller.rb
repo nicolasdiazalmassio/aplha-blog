@@ -3,10 +3,11 @@ class ArticlesController < ApplicationController
     before_action :set_article, only: [:show, :edit, :update, :destroy]
 
     def show
+        @articles = @user.articles.paginate(page: params[:page], per_page: 5)
     end
     
     def index
-        @articles = Article.all
+        @articles = @user.articles.paginate(page: params[:page], per_page: 5)
     end
 
     def new
